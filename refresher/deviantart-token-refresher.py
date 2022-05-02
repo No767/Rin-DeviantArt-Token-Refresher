@@ -27,7 +27,7 @@ class tokenRefresherUtils:
     async def get(self):
         meta = MetaData()
         engine = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v2"
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3"
         )
         tokens = Table(
             "DA_Tokens",
@@ -44,7 +44,7 @@ class tokenRefresherUtils:
     async def update_values(self, Access_Token, Refresh_Token):
         meta = MetaData()
         engine2 = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v2"
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3"
         )
         tokens = Table(
             "DA_Tokens",

@@ -1,3 +1,5 @@
 *.env
 .env
 server2/.env
+server2/refresher.py
+server2

@@ -10,7 +10,7 @@ python-dotenv = "*"
 sqlalchemy = "*"
 asyncpg = "*"
 uvloop = "*"
-psycopg2 = "*"
+
 
 [dev-packages]
 

@@ -14,8 +14,8 @@ Password = os.getenv("Postgres_Rin_Password")
 Server_IP = os.getenv("Postgres_Server_IP")
 Username = os.getenv("Postgres_Username")
 
-Access_Token = ""
-Refresh_Token = ""
+Access_Token = os.getenv("DeviantArt_Access_Token")
+Refresh_Token = os.getenv("DeviantArt_Refresh_Token")
 
 logging.basicConfig(
         level=logging.INFO,
@@ -29,7 +29,7 @@ class tokenRefresherUtilsMain:
     async def initTable(self):
         meta4 = MetaData()
         engine4 = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@192.168.1.204:5432/rin_deviantart_tokens_v2", echo=True
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3", echo=True
         )
         tokens = Table(
             "DA_Tokens",
@@ -43,7 +43,7 @@ class tokenRefresherUtilsMain:
     async def get(self):
         meta = MetaData()
         engine = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v2"
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3"
         )
         tokens = Table(
             "DA_Tokens",
@@ -60,7 +60,7 @@ class tokenRefresherUtilsMain:
     async def update_values(self, Access_Token, Refresh_Token):
         meta = MetaData()
         engine2 = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v2", echo=True
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3", echo=True
         )
         tokens = Table(
             "DA_Tokens",
@@ -77,7 +77,7 @@ class tokenRefresherUtilsMain:
     async def insert_values(self, Access_Token, Refresh_Token):
         meta = MetaData()
         engine2 = create_async_engine(
-            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v2"
+            f"postgresql+asyncpg://{Username}:{Password}@{Server_IP}:5432/rin_deviantart_tokens_v3", echo=True
         )
         tokens = Table(
             "DA_Tokens",
@@ -94,8 +94,8 @@ class tokenRefresherUtilsMain:
 async def main():
     token = tokenRefresherUtilsMain()
     # await token.update_values(Access_Token, Refresh_Token)
-            
-    print(await token.get())
+    await token.insert_values(Access_Token, Refresh_Token)
+    # print(await token.get())
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 asyncio.run(main())
