@@ -1,4 +1,5 @@
 FROM archlinux:latest
+LABEL org.opencontainers.image.source https://github.com/No767/Rin-DeviantArt-Token-Refresher
 RUN pacman -Syu --noconfirm
 RUN pacman -S python libffi nodejs-lts-gallium npm wget --noconfirm
 RUN mkdir refresher
