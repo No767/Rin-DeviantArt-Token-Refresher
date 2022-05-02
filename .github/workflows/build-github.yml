@@ -29,10 +29,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: latest
       -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/No767/Rin-DeviantArt-Token-Refresher:latest
+          tags: ${{ steps.meta.outputs.tags }}
           build_args: PM2_PUBLIC_KEY_INGEST=${{ secrets.PM2_PUBLIC_KEY_INGEST }}, PM2_SECRET_KEY_INGEST=${{ secrets.PM2_SECRET_KEY_INGEST }}
