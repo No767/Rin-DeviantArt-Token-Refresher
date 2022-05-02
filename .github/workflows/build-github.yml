@@ -34,5 +34,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/no767/rin-deviantart-token-refresher:latest
+          tags: ghcr.io/No767/Rin-DeviantArt-Token-Refresher:latest
           build_args: PM2_PUBLIC_KEY_INGEST=${{ secrets.PM2_PUBLIC_KEY_INGEST }}, PM2_SECRET_KEY_INGEST=${{ secrets.PM2_SECRET_KEY_INGEST }}
