@@ -42,4 +42,4 @@ jobs:
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          build_args: PM2_PUBLIC_KEY_INGEST=${{ secrets.PM2_PUBLIC_KEY_INGEST }}, PM2_SECRET_KEY_INGEST=${{ secrets.PM2_SECRET_KEY_INGEST }}
+          build-args: PM2_PUBLIC_KEY_INGEST=${{ secrets.PM2_PUBLIC_KEY_INGEST }}, PM2_SECRET_KEY_INGEST=${{ secrets.PM2_SECRET_KEY_INGEST }}
